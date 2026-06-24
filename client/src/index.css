@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply font-sans antialiased bg-zinc-50 text-zinc-900 dark:bg-zinc-925 dark:text-zinc-100;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar        { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { @apply rounded-full bg-zinc-300 dark:bg-zinc-700; }
+
+  ::selection { @apply bg-iris-200 dark:bg-iris-800 text-iris-900 dark:text-iris-100; }
+}
+
+@layer components {
+
+  /* ── Buttons ── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold text-sm
+           transition-all duration-200 active:scale-95 focus-visible:outline-none
+           focus-visible:ring-2 focus-visible:ring-iris-500 focus-visible:ring-offset-2
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100
+           select-none cursor-pointer;
+  }
+  .btn-primary {
+    @apply btn bg-iris-600 hover:bg-iris-500 text-white shadow-iris hover:shadow-iris-lg px-5 py-2.5;
+  }
+  .btn-ghost {
+    @apply btn text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-4 py-2;
+  }
+  .btn-danger {
+    @apply btn bg-red-600 hover:bg-red-500 text-white px-4 py-2;
+  }
+  .btn-icon {
+    @apply btn w-9 h-9 p-0 rounded-xl text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800;
+  }
+
+  /* ── Inputs ── */
+  .input {
+    @apply w-full px-4 py-3 rounded-xl text-sm border border-zinc-200 dark:border-zinc-700
+           bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100
+           placeholder-zinc-400 dark:placeholder-zinc-500
+           focus:outline-none focus:ring-2 focus:ring-iris-500 focus:border-transparent
+           transition-all duration-200;
+  }
+
+  /* ── Cards / panels ── */
+  .card {
+    @apply bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-100 dark:border-zinc-800 shadow-sm;
+  }
+  .glass {
+    @apply bg-white/70 dark:bg-zinc-900/70 backdrop-blur-xl border border-white/20 dark:border-zinc-700/50;
+  }
+
+  /* ── Messages ── */
+  .msg-bubble {
+    @apply rounded-2xl px-4 py-2.5 text-sm leading-relaxed max-w-xs sm:max-w-sm md:max-w-md
+           shadow-msg dark:shadow-msg-dark break-words;
+  }
+  .msg-out {
+    @apply msg-bubble bg-iris-600 text-white rounded-br-md;
+  }
+  .msg-in {
+    @apply msg-bubble bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 rounded-bl-md;
+  }
+  .msg-deleted {
+    @apply italic text-zinc-400 dark:text-zinc-500;
+  }
+
+  /* ── Sidebar item ── */
+  .contact-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-all duration-150
+           hover:bg-zinc-100 dark:hover:bg-zinc-800 select-none;
+  }
+  .contact-item.active {
+    @apply bg-iris-50 dark:bg-iris-950/40 ring-1 ring-iris-200 dark:ring-iris-800;
+  }
+
+  /* ── Avatar ── */
+  .avatar {
+    @apply rounded-full object-cover flex-shrink-0;
+  }
+  .online-dot {
+    @apply absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 rounded-full
+           border-2 border-white dark:border-zinc-900 ring-1 ring-emerald-400;
+  }
+
+  /* ── Badge ── */
+  .badge {
+    @apply inline-flex items-center justify-center text-xs font-bold rounded-full
+           bg-iris-600 text-white min-w-[18px] h-[18px] px-1;
+  }
+
+  /* ── Typing indicator ── */
+  .typing-dot {
+    @apply w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-500;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    @apply flex items-center gap-3 text-xs text-zinc-400 dark:text-zinc-600 my-4;
+  }
+  .divider::before,
+  .divider::after {
+    content: '';
+    @apply flex-1 border-t border-zinc-200 dark:border-zinc-700;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .bg-shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+    background-size: 200% 100%;
+  }
+
+  .text-balance { text-wrap: balance; }
+}
+
+/* Emoji picker dark mode override */
+.dark em-emoji-picker {
+  --background-rgb: 24, 24, 27;
+  --border-color: #3f3f46;
+  --input-border-color: #52525b;
+  --color-a: #a78bfa;
+}
